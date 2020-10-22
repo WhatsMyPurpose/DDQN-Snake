@@ -58,7 +58,7 @@ class DDQNAgent:
             self.q_target.set_weights(target_network_theta)
 
     def learn(self):
-        states, actions, rewards, new_states, not_dones = self.sample_memory()
+        states, actions, rewards, new_states, dones = self.sample_memory()
 
         q_pred = self.q_eval.predict(states)
         q_next = self.q_eval.predict(new_states)
@@ -67,7 +67,7 @@ class DDQNAgent:
         batch_index = np.arange(self.batch_size, dtype=np.int32)
         max_actions = np.argmax(q_targ, axis=1).astype(int)
 
-        q_targ[batch_index, actions] = rewards + self.gamma*q_targ[batch_index, max_actions]*not_dones
+        q_targ[batch_index, actions] = rewards + self.gamma*q_targ[batch_index, max_actions]*(~dones)
         _ = self.q_eval.fit(states, q_targ, epochs=1, verbose=0)
 
         self.epsilon = self.epsilon*self.epsilon_dec if self.epsilon>self.epsilon_min else self.epsilon_min
