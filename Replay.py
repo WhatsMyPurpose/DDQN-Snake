@@ -3,15 +3,6 @@ from collections import deque
 import random
 
 
-class Memory:
-    def __init__(self, state, action, reward, new_state, done):
-        self.cur_state = state
-        self.action = action
-        self.reward = reward
-        self.new_state = new_state
-        self.done = done
-
-
 class ReplayBuffer:
     def __init__(self, maxlen):
         self.maxlen = maxlen
