@@ -12,7 +12,7 @@ Using Double deep Q-learning to train an agent to play snake.
 
 ## Returned Snake States
 - If the food is somewhere above the snake's head - (0/1) <br>
-- If the food is somewhere to the right of snake's head - (0/1) <br>
+- If the food is somewhere to the right of the snake's head - (0/1) <br>
 - If there is an obstacle (snake body or wall) directly above the snake's head - (0/1) <br>
 - If there is an obstacle directly below the snake's head - (0/1) <br>
 - If there is an obstacle directly to the right of the snake's head - (0/1) <br>
