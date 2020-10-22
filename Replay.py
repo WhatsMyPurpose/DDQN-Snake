@@ -27,8 +27,8 @@ class ReplayBuffer:
         actions = np.array(actions, dtype='int').reshape(batch_size)
         rewards = np.array(rewards).reshape(batch_size)
         new_states = np.array(new_states).reshape((batch_size,) + state_shape)
-        dones = ~np.array(dones, dtype=np.bool).reshape(batch_size)
-        return states, actions, rewards, new_states, dones
+        not_dones = np.array(dones, dtype=np.bool).reshape(batch_size)
+        return states, actions, rewards, new_states, not_dones
 
     def clear(self):
         self.memory = deque(maxlen=self.maxlen)
