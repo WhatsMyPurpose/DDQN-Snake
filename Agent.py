@@ -58,6 +58,8 @@ class DDQNAgent:
             self.q_target.set_weights(target_network_theta)
 
     def learn(self):
+        if len(self.memory) < self.batch_size:
+            return
         states, actions, rewards, new_states, dones = self.sample_memory()
 
         q_pred = self.q_eval.predict(states)
